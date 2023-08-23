@@ -1,4 +1,5 @@
 "use client";
+import { SwiperModal } from "@/components/Modal";
 import React from "react";
 import Gallery from "react-photo-gallery";
 
@@ -69,7 +70,8 @@ const PhotoSection = () => {
   return (
     <section>
       <h2 className="title">Gallary</h2>
-      <Gallery photos={photos} />
+      {/* <Gallery photos={photos} /> */}
+      <SwiperModal />
     </section>
   );
 };

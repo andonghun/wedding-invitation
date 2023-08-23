@@ -5,6 +5,7 @@ import {
   MovieSection,
   PhotoSection,
 } from "@/components/section";
+import GuestBook from "@/components/section/GuestBook";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <InvitationSection />
       <PhotoSection />
       <LocationSection />
+      <GuestBook />
     </main>
   );
 }
