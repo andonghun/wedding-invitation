@@ -22,15 +22,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} w-screen h-auto`}>
-        <Image
-          src={`/fabric.png`}
-          width={500}
-          height={500}
-          alt="fabric"
-          className="absolute top-0 left-0 z-[-1] w-screen h-screen bg-second bg-repeat pointer-events-none"
-        />
-        <div className="max-w-sm mx-auto">{children}</div>
+      <body
+        className={`${inter.className} w-screen h-auto bg-[url('/fabric.png')] bg-repeat bg-second`}
+      >
+        <div className="max-w-sm mx-auto">{children}</div>{" "}
       </body>
     </html>
   );
