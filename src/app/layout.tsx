@@ -28,7 +28,7 @@ export default function RootLayout({
           width={500}
           height={500}
           alt="fabric"
-          className="absolute top-0 left-0 z-[-1] w-screen h-screen bg-[#f5f5f5] bg-repeat pointer-events-none"
+          className="absolute top-0 left-0 z-[-1] w-screen h-screen bg-second bg-repeat pointer-events-none"
         />
         <div className="max-w-sm mx-auto">{children}</div>
       </body>

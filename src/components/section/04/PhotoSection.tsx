@@ -69,7 +69,14 @@ const photos = [
 const PhotoSection = () => {
   return (
     <section>
-      <h2 className="title">Gallary</h2>
+      <div>
+        <div className="font-main text-main text-m mb-4 tracking-widest">
+          GALLARY
+        </div>
+        <div className="font-main text-main text-xl tracking-widest mb-14">
+          우리가 함께한 순간
+        </div>
+      </div>
       {/* <Gallery photos={photos} /> */}
       <SwiperModal />
     </section>

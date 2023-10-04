@@ -2,11 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-section {
-  @apply py-10 px-5 h-full text-center flex flex-col justify-between text-gray-700;
+@font-face {
+  font-family: "GyeonggiBatang";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/GyeonggiBatang.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
 
-.title {
+section {
+  @apply py-10 px-5 h-full text-center flex flex-col justify-between;
+}
+
+/* .title {
   @apply text-2xl font-bold;
 }
 
@@ -16,4 +24,4 @@ section {
 
 .invitation-content {
   @apply text-sm;
-}
+} */
