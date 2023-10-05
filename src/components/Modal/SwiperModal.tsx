@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -41,31 +41,59 @@ const PHOTOS = [
 ];
 
 const SwiperModal = () => {
+  const [mainSliderIndex, setMainSliderIndex] = useState(0);
+
+  const handleMainSliderChange = (index: number) => {
+    setMainSliderIndex(index);
+  };
+
   return (
-    <Swiper
-      pagination={{
-        type: "fraction",
-      }}
-      navigation={true}
-      modules={[Pagination, Navigation]}
-      className="w-full h-[500px] flex justify-center items-center"
-    >
-      {PHOTOS.map(({ fileName, height, width }) => {
-        return (
-          <SwiperSlide
-            key={fileName}
-            className="flex justify-center items-center"
-          >
-            <Image
-              src={`/gallery/${fileName}`}
-              width={300}
-              height={200}
-              alt={fileName}
-            />
-          </SwiperSlide>
-        );
-      })}
-    </Swiper>
+    <>
+      <Swiper
+        modules={[Pagination, Navigation]}
+        className="w-full h-[300px] flex justify-center items-center mb-4"
+        onSlideChange={(swiper) => handleMainSliderChange(swiper.realIndex)}
+      >
+        {PHOTOS.map(({ fileName, height, width }) => {
+          return (
+            <SwiperSlide
+              key={fileName}
+              className="flex justify-center items-center"
+            >
+              <Image
+                src={`/gallery/${fileName}`}
+                width={300}
+                height={200}
+                alt={fileName}
+              />
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+      <Swiper
+        slidesPerView={4}
+        spaceBetween={5}
+        modules={[Pagination, Navigation]}
+        className="w-[300px] h-[50px] flex justify-center items-center border-r-main"
+        initialSlide={mainSliderIndex} // 메인 슬라이더의 인덱스와 일치하도록 초기 슬라이드 설정
+      >
+        {PHOTOS.map(({ fileName, height, width }) => {
+          return (
+            <SwiperSlide
+              key={fileName}
+              className="flex justify-center items-center"
+            >
+              <Image
+                src={`/gallery/${fileName}`}
+                width={300}
+                height={200}
+                alt={fileName}
+              />
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+    </>
   );
 };
 

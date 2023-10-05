@@ -1,4 +1,5 @@
 import React from "react";
+import KakaoMap from "./Kakaomap";
 
 const LocationSection = () => {
   return (
@@ -20,7 +21,7 @@ const LocationSection = () => {
         </p>
       </div>
       <div>
-        <div>지도</div>
+        <KakaoMap />
       </div>
     </section>
   );
