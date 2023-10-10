@@ -4,9 +4,11 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
+import "react-toastify/dist/ReactToastify.css";
+
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Image from "next/image";
+import { ToastContainer } from "react-toastify";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,6 +27,7 @@ export default function RootLayout({
       <body
         className={`${inter.className} w-screen h-auto bg-[url('/fabric.png')] bg-repeat bg-second`}
       >
+        <ToastContainer position="top-center" />
         <div className="max-w-sm mx-auto">{children}</div>{" "}
       </body>
     </html>
