@@ -6,32 +6,17 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { toast } from "react-toastify";
 
+// Kakao 타입 선언
+declare global {
+  interface Window {
+    Kakao: any;
+  }
+}
+
 const Input = () => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [comment, setComment] = useState("");
-
-  function validateKoreanPhoneNumber(phone: any) {
-    // 숫자와 하이픈(-)만 포함하는지 확인
-    if (!/^[0-9-]+$/.test(phone)) {
-      return alert("연락처를 형식에 맞게 입력해 주세요.");
-    }
-
-    // 하이픈(-)을 모두 제거하여 숫자만 남기기
-    const numericPhoneNumber = phone.replace(/-/g, "");
-
-    // 010으로 시작하는지 확인
-    if (!/^010/.test(numericPhoneNumber)) {
-      return false;
-    }
-
-    // 총 11자리인지 확인
-    if (numericPhoneNumber.length !== 11) {
-      return false;
-    }
-
-    return true;
-  }
 
   const addComment = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -71,6 +56,38 @@ const Input = () => {
     const { error } = await supabase
       .from("guest")
       .insert({ name, phone, comment });
+  };
+
+  // 카카오톡 링크 공유
+  const shareKakao = () => {
+    if (window.Kakao) {
+      const kakao = window.Kakao;
+      if (!kakao.isInitialized()) {
+        kakao.init(process.env.NEXT_PUBLIC_KAKAO_APP_JS_KEY);
+      }
+
+      kakao.Link.sendDefault({
+        objectType: "feed",
+        content: {
+          title: "title",
+          description: "description",
+          imageUrl: "imageUrl",
+          link: {
+            mobileWebUrl: "http://localhost:3000/",
+            webUrl: "http://localhost:3000/",
+          },
+        },
+        buttons: [
+          {
+            title: "title",
+            link: {
+              mobileWebUrl: "http://localhost:3000/",
+              webUrl: "http://localhost:3000/",
+            },
+          },
+        ],
+      });
+    }
   };
 
   return (
@@ -134,10 +151,13 @@ const Input = () => {
         </button>
       </form>
       <div className="flex items-center justify-center mb-14">
-        <Image src={`/kakao.png`} width={26} height={26} alt="logo" />
-        <div className="font-main text-black text-la ml-3">
+        <Image src={`/kakao.png`} width={23} height={23} alt="logo" />
+        <button
+          className="font-main text-black text-m ml-3"
+          onClick={shareKakao}
+        >
           카카오톡으로 초대장 보내기
-        </div>
+        </button>
       </div>
     </>
   );
