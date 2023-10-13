@@ -10,10 +10,12 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ToastContainer } from "react-toastify";
 
+import Script from "next/script";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "모바일 청첩장",
+  title: "조재연 ♡ 남선혜",
   description: "우리의 첫 시작을 축복해주세요.",
 };
 
@@ -24,6 +26,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <Script src={"https://developers.kakao.com/sdk/js/kakao.min.js"} />
       <body
         className={`${inter.className} w-screen h-auto bg-[url('/fabric.png')] bg-repeat bg-second`}
       >

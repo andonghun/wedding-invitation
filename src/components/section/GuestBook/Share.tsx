@@ -1,6 +1,7 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
-import Script from "next/script";
 
 // Kakao 타입 선언
 declare global {
@@ -8,9 +9,6 @@ declare global {
     Kakao: any;
   }
 }
-
-// 카카오톡 링크 공유
-const KAKAO_SDK_URL = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_APP_JS_KEY}&autoload=false`;
 
 const shareKakao = () => {
   if (window.Kakao) {
@@ -22,8 +20,8 @@ const shareKakao = () => {
     kakao.Link.sendDefault({
       objectType: "feed",
       content: {
-        title: "title",
-        description: "description",
+        title: "조재연 ♡ 남선혜",
+        description: "우리의 첫 시작을 축복해주세요.",
         imageUrl: "imageUrl",
         link: {
           mobileWebUrl: "http://localhost:3000",
@@ -32,7 +30,7 @@ const shareKakao = () => {
       },
       buttons: [
         {
-          title: "title",
+          title: "조재연 ♡ 남선혜",
           link: {
             mobileWebUrl: "http://localhost:3000",
             webUrl: "http://localhost:3000p",
@@ -46,10 +44,12 @@ const shareKakao = () => {
 const Share = () => {
   return (
     <>
-      <Script src={KAKAO_SDK_URL} strategy="beforeInteractive" />
       <div className="flex items-center justify-center mb-14">
         <Image src={`/kakao.png`} width={23} height={23} alt="logo" />
-        <button className="font-main text-black text-m ml-3">
+        <button
+          className="font-main text-black text-m ml-3"
+          onClick={shareKakao}
+        >
           카카오톡으로 초대장 보내기
         </button>
       </div>
