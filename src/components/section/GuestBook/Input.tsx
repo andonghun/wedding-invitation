@@ -3,15 +3,7 @@
 import { supabase } from "@/supabase";
 import React, { useState } from "react";
 
-import Image from "next/image";
 import { toast } from "react-toastify";
-
-// Kakao 타입 선언
-declare global {
-  interface Window {
-    Kakao: any;
-  }
-}
 
 const Input = () => {
   const [name, setName] = useState("");
@@ -56,38 +48,6 @@ const Input = () => {
     const { error } = await supabase
       .from("guest")
       .insert({ name, phone, comment });
-  };
-
-  // 카카오톡 링크 공유
-  const shareKakao = () => {
-    if (window.Kakao) {
-      const kakao = window.Kakao;
-      if (!kakao.isInitialized()) {
-        kakao.init(process.env.NEXT_PUBLIC_KAKAO_APP_JS_KEY);
-      }
-
-      kakao.Link.sendDefault({
-        objectType: "feed",
-        content: {
-          title: "title",
-          description: "description",
-          imageUrl: "imageUrl",
-          link: {
-            mobileWebUrl: "http://localhost:3000/",
-            webUrl: "http://localhost:3000/",
-          },
-        },
-        buttons: [
-          {
-            title: "title",
-            link: {
-              mobileWebUrl: "http://localhost:3000/",
-              webUrl: "http://localhost:3000/",
-            },
-          },
-        ],
-      });
-    }
   };
 
   return (
@@ -150,15 +110,6 @@ const Input = () => {
           신랑 & 신부에게 참석 의사 전달하기
         </button>
       </form>
-      <div className="flex items-center justify-center mb-14">
-        <Image src={`/kakao.png`} width={23} height={23} alt="logo" />
-        <button
-          className="font-main text-black text-m ml-3"
-          onClick={shareKakao}
-        >
-          카카오톡으로 초대장 보내기
-        </button>
-      </div>
     </>
   );
 };
