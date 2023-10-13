@@ -22,7 +22,7 @@ const shareKakao = () => {
       content: {
         title: "조재연 ♡ 남선혜",
         description: "우리의 첫 시작을 축복해주세요.",
-        imageUrl: "imageUrl",
+        // imageUrl: "",
         link: {
           mobileWebUrl: "http://localhost:3000",
           webUrl: "http://localhost:3000",

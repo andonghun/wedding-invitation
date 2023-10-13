@@ -1,7 +1,6 @@
 "use client";
 import { SwiperModal } from "@/components/Modal";
 import React from "react";
-import Gallery from "react-photo-gallery";
 
 const photos = [
   {
@@ -77,7 +76,6 @@ const PhotoSection = () => {
           우리가 함께한 순간
         </div>
       </div>
-      {/* <Gallery photos={photos} /> */}
       <SwiperModal />
     </section>
   );

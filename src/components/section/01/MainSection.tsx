@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const MainSection = () => {
   return (
@@ -15,7 +16,14 @@ const MainSection = () => {
       </div>
       <div className="content">
         <div className="bg-white pt-4 shadow-lg">
-          <div className="bg-main w-[320px] h-[350px] mx-auto flex items-center justify-center"></div>
+          <div className="flex items-center justify-center">
+            <Image
+              src={"/gallery/main.jpeg"}
+              width={320}
+              height={350}
+              alt={"main"}
+            />
+          </div>
           <div className="font-main text-gray text-la pt-6 pb-1">
             2024년 1월 14일 일요일 오후 3시
           </div>
