@@ -16,7 +16,7 @@ const GuestBook = async () => {
         </div>
       ))} */}
       <Input />
-      <Share />
+      {/* <Share /> */}
     </section>
   );
 };

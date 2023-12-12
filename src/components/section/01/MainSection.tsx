@@ -18,7 +18,7 @@ const MainSection = () => {
         <div className="bg-white pt-4 shadow-lg">
           <div className="flex items-center justify-center">
             <Image
-              src={"/gallery/main.jpeg"}
+              src={"/gallery/wedding_main.webp"}
               width={320}
               height={350}
               alt={"main"}

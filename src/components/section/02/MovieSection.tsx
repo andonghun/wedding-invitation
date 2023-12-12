@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useEffect } from "react";
 
 const MovieSection = () => {
   return (
@@ -9,7 +11,7 @@ const MovieSection = () => {
         </p>
       </div>
       <iframe
-        src="https://www.youtube.com/embed/88B4q-T4HzQ?version=3&autoplay=1&controls=0&&showinfo=0&loop=1"
+        src="https://www.youtube.com/embed/88B4q-T4HzQ?version=3&autoplay=1&controls=0&showinfo=0&loop=1&mute=0"
         width={344}
         height={194}
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

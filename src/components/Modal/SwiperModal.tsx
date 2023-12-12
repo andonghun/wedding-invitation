@@ -4,7 +4,17 @@ import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 const PHOTOS = [
-  { fileName: "1.webp", width: 500, height: 500 },
+  { fileName: "wedding_1.webp", width: 500, height: 500 },
+  { fileName: "wedding_2.webp", width: 500, height: 500 },
+  { fileName: "wedding_3.webp", width: 500, height: 500 },
+  { fileName: "wedding_4.webp", width: 500, height: 500 },
+  { fileName: "wedding_5.webp", width: 500, height: 500 },
+  { fileName: "wedding_6.webp", width: 500, height: 500 },
+  { fileName: "wedding_7.webp", width: 500, height: 500 },
+  { fileName: "wedding_8.webp", width: 500, height: 500 },
+  { fileName: "wedding_9.webp", width: 500, height: 500 },
+  { fileName: "wedding_10.webp", width: 500, height: 500 },
+  { fileName: "wedding_11.webp", width: 500, height: 500 },
   { fileName: "2.webp", width: 500, height: 500 },
   { fileName: "3.webp", width: 500, height: 500 },
   { fileName: "4.webp", width: 500, height: 500 },
@@ -41,6 +51,11 @@ const PHOTOS = [
 ];
 
 const SwiperModal = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalImageFileName, setModalImageFileName] = useState<string | null>(
+    null
+  );
+
   const [mainSliderIndex, setMainSliderIndex] = useState(0);
 
   const handleMainSliderChange = (index: number) => {
@@ -66,11 +81,33 @@ const SwiperModal = () => {
                 width={500}
                 height={500}
                 alt={fileName}
+                onClick={() => {
+                  setIsModalOpen(true);
+                  setModalImageFileName(fileName);
+                }}
               />
             </SwiperSlide>
           );
         })}
       </Swiper>
+      {isModalOpen && (
+        <div
+          className="z-50 fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center"
+          onClick={() => {
+            setIsModalOpen(false);
+            setModalImageFileName(null);
+          }}
+        >
+          <div className="flex justify-center items-center">
+            <Image
+              src={`/gallery/${modalImageFileName}`}
+              width={500}
+              height={500}
+              alt={"modal"}
+            />
+          </div>
+        </div>
+      )}
     </>
   );
 };
