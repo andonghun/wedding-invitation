@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use client";
 
 import { useSound } from "@/hooks/useSound";
@@ -31,7 +32,7 @@ const LandingPage = () => {
     reset(true);
   }, []);
 
-  const shuffle = (array) => {
+  const shuffle = (array: any) => {
     let currentIndex = array.length,
       temporaryValue,
       randomIndex;
@@ -52,7 +53,7 @@ const LandingPage = () => {
   };
 
   const reset = (firstInit = true) => {
-    const newDoors = doors.map(() => {
+    const newDoors: any = doors.map(() => {
       const boxesClone = ["❓"];
       if (!firstInit) {
         const pool = [...items, ...items]; // 예시: items를 두 배로 늘림
@@ -101,7 +102,7 @@ const LandingPage = () => {
 
   const checkResult = (doors: any) => {
     // 결과 확인 로직
-    if (!doors.every((door) => !door.spinning)) {
+    if (!doors.every((door: any) => !door.spinning)) {
       return;
     }
 
