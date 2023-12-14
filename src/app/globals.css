@@ -37,7 +37,7 @@ section {
     transform: translateY(-100%);
   }
   to {
-    transform: translateY(-1500%);
+    transform: translateY(-3000%);
   }
 }
 
