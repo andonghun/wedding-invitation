@@ -1,13 +1,24 @@
 "use client";
 
+import { useSound } from "@/hooks/useSound";
 import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
+const items = ["👰‍♀️", "🏝️", "🤵🏻‍♂️", "1️⃣", "4️⃣"];
+const imageMap = {
+  "🤵🏻‍♂️": "slotImages/face.png",
+};
+
 const LandingPage = () => {
+  const [coins, setCoins] = useState(10);
+
   const router = useRouter();
 
-  const items = ["👰‍♀️", "🏝️", "🤵🏻‍♂️", "1️⃣", "4️⃣"];
+  const { playSound: playBegin } = useSound("sounds/reelsBegin.mp3");
+  const { playSound: playEnd } = useSound("sounds/reelsEnd.mp3");
+  const { playSound: playWin } = useSound("sounds/winner.mp3");
+
   const [doors, setDoors] = useState(
     [...Array(3)].map(() => ({
       boxes: ["❓"],
@@ -50,13 +61,22 @@ const LandingPage = () => {
       return { boxes: boxesClone, spinning: false };
     });
     setDoors(newDoors);
+    setCoins(10);
   };
 
   const spin = () => {
+    if (coins <= 0) {
+      toast.error("코인이 부족합니다!");
+      return;
+    }
+
     // 모든 도어가 회전을 멈춘 경우에만 시작
     if (!doors.every((door) => !door.spinning)) {
       return;
     }
+
+    setCoins((prevCoins) => prevCoins - 1); // 코인 사용
+    playBegin();
 
     // 회전 시작
     const spinningDoors = doors.map(() => ({
@@ -73,32 +93,20 @@ const LandingPage = () => {
         spinning: false,
       }));
       setDoors(stoppedDoors);
+
+      playEnd();
+      checkResult(stoppedDoors);
     }, 2000);
   };
 
-  useEffect(() => {
-    // 모든 도어가 회전을 멈춘 경우에만 결과 확인
+  const checkResult = (doors: any) => {
+    // 결과 확인 로직
     if (!doors.every((door) => !door.spinning)) {
       return;
     }
 
-    // 각 door의 transitionDuration을 기반으로 지연 처리
-    doors.forEach(async (door, index) => {
-      await new Promise((resolve) =>
-        setTimeout(resolve, door.transitionDuration * 1000)
-      );
-
-      setDoors((prevDoors) =>
-        prevDoors.map((prevDoor, prevIndex) => {
-          if (prevIndex === index) {
-            return { ...prevDoor, spinning: false };
-          }
-          return prevDoor;
-        })
-      );
-    });
-
     if (doors[0].boxes[0] === "❓") return;
+
     if (
       doors[0].boxes[0] === doors[1].boxes[0] &&
       doors[1].boxes[0] === doors[2].boxes[0]
@@ -109,6 +117,7 @@ const LandingPage = () => {
             router.push("/main");
           },
         });
+        playWin();
       }
       if (doors[0].boxes[0] === "👰‍♀️") {
         toast.info("신부는 남선혜입니다!", {
@@ -116,6 +125,7 @@ const LandingPage = () => {
             router.push("/main");
           },
         });
+        playWin();
       }
       if (doors[0].boxes[0] === "🏝️") {
         toast.info("장소는 플로팅 아일랜드입니다!", {
@@ -123,6 +133,7 @@ const LandingPage = () => {
             router.push("/main");
           },
         });
+        playWin();
       }
     }
     if (
@@ -135,11 +146,19 @@ const LandingPage = () => {
           router.push("/main");
         },
       });
+      playWin();
     }
-  }, [doors]);
+  };
+
+  useEffect(() => {
+    if (coins === 0) {
+      toast.error("아쉽다! 코인을 다 써버렸어요!");
+    }
+  }, [coins]);
 
   return (
-    <div id="app">
+    <div id="app" className="flex justify-center gap-8">
+      <h1 className="mt-10 text-[32px]">💖결혼 슬롯 머신💍</h1>
       <div className="flex">
         {doors.map((door, index) => (
           <div
@@ -157,7 +176,11 @@ const LandingPage = () => {
             >
               {door.boxes.map((box, boxIndex) => (
                 <div key={boxIndex} className="box">
-                  {box}
+                  {imageMap[box] ? (
+                    <img src={imageMap[box]} alt={box} width={75} />
+                  ) : (
+                    box
+                  )}
                 </div>
               ))}
             </div>
@@ -165,8 +188,16 @@ const LandingPage = () => {
         ))}
       </div>
       <div className="buttons">
-        <button onClick={spin}>Play</button>
-        <button onClick={() => reset(true)}>Reset</button>
+        <button
+          className="focus:outline-none text-black bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900"
+          onClick={spin}
+        >
+          클릭해서! 돌려주세요!
+        </button>
+        <div className="text-m">남은 코인: {coins}</div>
+        <button onClick={() => reset(true)} className="text-m">
+          다시 도전하기!
+        </button>
       </div>
     </div>
   );
