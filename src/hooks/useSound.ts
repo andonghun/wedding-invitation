@@ -1,23 +1,28 @@
-// @ts-nocheck
-
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export const useSound = (soundUrl: string) => {
-  const soundRef = useRef(new Audio(soundUrl));
+  const [sound, setSound] = useState<any>(null);
 
-  soundRef.current.volume = 0.1;
+  useEffect(() => {
+    // 클라이언트 사이드에서만 Audio 객체 생성
+    if (typeof window !== "undefined") {
+      const audio = new Audio(soundUrl);
+      audio.volume = 0.1;
+      setSound(audio);
+    }
+  }, [soundUrl]);
 
   const playSound = () => {
-    soundRef.current.play();
+    if (sound) {
+      sound.play();
+    }
   };
 
   const loadSound = () => {
-    soundRef.current.load();
+    if (sound) {
+      sound.load();
+    }
   };
-
-  useEffect(() => {
-    loadSound();
-  }, [soundUrl]);
 
   return { playSound, loadSound };
 };
