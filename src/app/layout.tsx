@@ -17,6 +17,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "조재연 ♡ 남선혜",
   description: "우리의 첫 시작을 축복해주세요.",
+  openGraph: {
+    description: "우리의 첫 시작을 축복해주세요.",
+  },
 };
 
 export default function RootLayout({
