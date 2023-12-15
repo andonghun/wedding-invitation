@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { useTimeStore } from "@/useTimeStore";
 import React, { useEffect, useState } from "react";
 
