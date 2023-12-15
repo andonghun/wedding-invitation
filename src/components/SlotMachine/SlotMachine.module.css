@@ -1,0 +1,22 @@
+.Container {
+  border: 2px solid #156601;
+
+  background: linear-gradient(
+    145deg,
+    rgba(146, 240, 122, 0.25) 17.53%,
+    #92f07a 84.9%
+  );
+
+  box-shadow: 5px 10px 10px 5px rgba(0, 0, 0, 0.25);
+}
+
+.Text {
+  color: #fff;
+
+  text-align: center;
+  font-family: Mochiy Pop P One;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
