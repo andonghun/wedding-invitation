@@ -150,7 +150,7 @@ const SlotMachine = () => {
       setWeddingTime();
 
       setTimeout(() => {
-        window.location.href = "https://www.barunsonmcard.com/m/jysh20240114";
+        window.location.href = "https://www.barunsonmcard.com/m/jysh0114";
       }, 5000);
     }
   };
