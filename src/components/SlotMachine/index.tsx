@@ -184,7 +184,7 @@ const SlotMachine = () => {
         </div>
       </div>
       <button
-        className={`animate-pulse flex justify-center items-center w-[150px] h-[150px] rounded-full ${styles.Container} hover:bg-second active:bg-white active:translate-y-1 flex-col font-bold`}
+        className={`animate-pulse flex justify-center items-center w-[150px] h-[150px] rounded-full ${styles.Container} hover:bg-second active:bg-white active:translate-y-1 flex-col font-bold text-txl`}
         onClick={spin}
       >
         <Image src={SpinButton} width={120} height={120} alt="spin-button" />
