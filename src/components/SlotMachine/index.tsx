@@ -98,8 +98,8 @@ const SlotMachine = () => {
     // 슬롯 머신 시도 횟수 증가
     setSpinCount((prevCount) => prevCount + 1);
 
-    // 슬롯 머신 횟수 3회 이상인 경우, 50퍼 확률로 당첨
-    const isWin = spinCount >= 2 && Math.random() < 0.5;
+    // 슬롯 머신 횟수 3회 이상인 경우, 70퍼 확률로 당첨
+    const isWin = spinCount >= 1 && Math.random() < 0.8;
 
     let spinningDoors: any;
 
