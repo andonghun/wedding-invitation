@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description: "우리의 첫 시작을 축복해주세요.",
     images: [
       {
-        url: "https://www.jysh-wedding.xyz/gallery/wedding_main.webp",
+        url: "https://slot.jysh-wedding.xyz/gallery/wedding_main.webp",
         width: 800,
         height: 600,
       },
