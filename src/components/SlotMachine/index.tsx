@@ -151,7 +151,7 @@ const SlotMachine = () => {
 
       setTimeout(() => {
         window.location.href = "https://www.barunsonmcard.com/m/jysh0114";
-      }, 5000);
+      }, 2000);
     }
   };
 
